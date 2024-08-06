@@ -4,19 +4,26 @@ Feature: User registers
 
   Scenario: Successful register with valid credentials
     Given user is on the "http://localhost:5173/signup" page
-    When user enters "Martin", "Arva" and valid "arvamartin", "arvamartin@gmail.com" and "password" credentials
+    When user enters "John", "Doe" and valid "johndoe", "arvamartin@gmail.com" and "password" credentials
     And user clicks on the Create an account button
     Then user should be on the "http://localhost:5173/login" page
 
 
-  Scenario: unsuccessful register with invalid email
+  Scenario: Unsuccessful register with invalid email
     Given user is on the "http://localhost:5173/signup" page
-    When user enters "Martin", "Arva" and valid "arvamartin", "arvamartin" and "password" credentials
+    When user enters "John", "Doe" and valid "johndoe", "arvamartin" and "password" credentials
     And user clicks on the Create an account button
     Then user should not be be on the "http://localhost:5173/login" page
 
 
-    Scenario Outline: Successful register with special characters
+    Scenario: Password too short
+      Given user is on the "http://localhost:5173/signup" page
+      When user enters "John", "Doe" and valid "johndoe", "john@example.com" and "p" credentials
+      And user clicks on the Create an account button
+      Then an error message should indicate the password is too short
+
+
+  Scenario Outline: Successful register with special characters
       Given user is on the "http://localhost:5173/signup" page
       When user enters "<FirstName>", "<LastName>" and valid "<UserName>", "<Email>" and "<Password>" credentials
       And user clicks on the Create an account button
@@ -32,6 +39,6 @@ Feature: User registers
 
   Scenario: Attempting SQL Injection Attack on the Registration Form
     Given user is on the "http://localhost:5173/signup" page
-    When user enters "Martin", "Arva" and valid "arvamartin", "fakeemail' OR '1'='1" and "password" credentials
+    When user enters "John", "Doe" and valid "johndoe", "fakeemail' OR '1'='1" and "password" credentials
     And user clicks on the Create an account button
     Then The registration should fail or show an error message

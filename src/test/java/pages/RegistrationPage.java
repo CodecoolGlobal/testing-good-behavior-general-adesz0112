@@ -70,4 +70,11 @@ public class RegistrationPage extends BasePage{
         assertTrue(pageSource.contains("error") || pageSource.contains("Registration failed"));
         driver.quit();
     }
+
+    @Then("an error message should indicate the password is too short")
+    public void verifyPasswordTooShort() {
+        String pageSource = driver.getPageSource();
+        assertTrue(pageSource.contains("Password is too short"));
+        driver.quit();
+    }
 }
