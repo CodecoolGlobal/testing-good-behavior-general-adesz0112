@@ -2,11 +2,11 @@ package pages;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class RegistrationPage extends BasePage{
@@ -53,6 +53,21 @@ public class RegistrationPage extends BasePage{
     public void userShouldBeOnTheLoginPage(String loginPageUrl){
         String actualPageUrl = driver.getCurrentUrl();
         assertEquals(loginPageUrl, actualPageUrl);
+        driver.quit();
+    }
+
+    @Then("user should not be be on the {string} page")
+    public void userShouldNotBeOnTheLoginPage(String loginPageUrl){
+        String actualPageUrl = driver.getCurrentUrl();
+        assertNotEquals(loginPageUrl, actualPageUrl);
+        driver.quit();
+    }
+
+    @Then("The registration should fail or show an error message")
+    public void verifySQLInjection() {
+        String pageSource = driver.getPageSource();
+        System.out.println(pageSource);
+        assertTrue(pageSource.contains("error") || pageSource.contains("Registration failed"));
         driver.quit();
     }
 }
