@@ -3,6 +3,7 @@ Feature: User registers
   so that, I can login after that.
 
   Scenario: Successful register with valid credentials
+
     Given user is on the "http://localhost:5173/signup" page
     When user enters "John", "Doe" and valid "johndoe", "arvamartin@gmail.com" and "password" credentials
     And user clicks on the Create an account button
@@ -42,3 +43,4 @@ Feature: User registers
     When user enters "John", "Doe" and valid "johndoe", "fakeemail' OR '1'='1" and "password" credentials
     And user clicks on the Create an account button
     Then The registration should fail or show an error message
+

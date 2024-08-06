@@ -78,3 +78,4 @@ public class RegistrationPage extends BasePage{
         driver.quit();
     }
 }
+
