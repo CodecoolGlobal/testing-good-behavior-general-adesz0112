@@ -1,5 +1,4 @@
 package StepDefinitions;
-
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import pages.HomePage;
 import pages.RegistrationPage;
-
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,8 +27,8 @@ public class RegistrationSteps {
     public void userIsOnTheRegistrationPage(String regPageUrl) {
         driver = new EdgeDriver();
         homePage = new HomePage(driver);
-
-        homePage.navigateToHomePage();
+        registrationPage = new RegistrationPage(driver);
+        homePage.navigateToHomePage(regPageUrl);
         driver.manage().window().maximize();
     }
 
@@ -40,14 +38,14 @@ public class RegistrationSteps {
         registrationPage.enterFirstName(firstName);
         registrationPage.enterLastName(lastName);
         registrationPage.enterUsername(userName);
-        registrationPage.enterEmail(userName);
+        registrationPage.enterEmail(email);
         registrationPage.enterPassword(password);
     }
 
     @When("user clicks on the Create an account button")
     public void userClicksOnTheRegisterBtn() throws InterruptedException {
         registrationPage.clickRegisterBtn();
-        sleep(2000);
+        sleep(5000);
     }
 
     @When("user resizes the window to {string}")

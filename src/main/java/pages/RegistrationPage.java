@@ -33,7 +33,7 @@ public class RegistrationPage extends BasePage {
     }
 
     public void clickRegisterBtn() {
-        wait.until(ExpectedConditions.elementToBeClickable(registerBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(registerBtn)).click();
     }
 
     public void enterFirstName(String firstName) {

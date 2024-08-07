@@ -1,4 +1,4 @@
-@registration
+@cleanUpDatabase
 Feature: User registers
   As a new user, I want to registrate with my credentials,
   so that, I can login after that.

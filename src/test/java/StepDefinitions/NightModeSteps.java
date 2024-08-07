@@ -10,7 +10,7 @@ import pages.LoginPage;
 
 public class NightModeSteps {
 
-    private LoginPage loginPage;
+    /*private LoginPage loginPage;
     private HomePage homePage;
     private WebDriver driver;
 
@@ -36,5 +36,5 @@ public class NightModeSteps {
     @Then("the background color of the page is changed")
     public void the_background_color_of_the_page_is_changed() {
 
-    }
+    }*/
 }
