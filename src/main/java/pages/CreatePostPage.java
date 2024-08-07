@@ -1,14 +1,16 @@
 package pages;
-import io.cucumber.java.en.When;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.time.Duration;
+
 public class CreatePostPage extends BasePage{
 
-    private final int SECONDS_OF_SLEEP = 3000;
     String filePath = System.getenv("IMAGE_LOCAL_PATH");
+    private final int SECONDS_OF_SLEEP = 3000;
 
     @FindBy(className = "select-from-computer-button")
     private WebElement uploadBtn;
@@ -23,26 +25,21 @@ public class CreatePostPage extends BasePage{
         super(driver);
     }
 
-    @When("user clicks on the Create Post button on the home page")
-    public void userClicksOnCreateNewPostBtnOnHomePage(){
-        sleep(3000);
-        wait.until(ExpectedConditions.visibilityOf(newPostBtn)).click();
+    public void clicksOnCreateNewPostBtn() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(newPostBtn)).click();
     }
-
-    @When("user uploads an image file")
-    public void userUploadsAnImageFile() {
+    public void uploadImageFile() {
+        sleep(3000);
         wait.until(ExpectedConditions.visibilityOf(uploadBtn)).sendKeys(filePath);
     }
 
-    @When("user writes description")
-    public void userWritesDescription(){
+    public void writeDescription(){
         String testDescription = "Test";
         wait.until(ExpectedConditions.visibilityOf(textAreaInput)).sendKeys(testDescription);
     }
 
-    @When("user clicks on the Create Post button")
-    public void userClicksOnCreatePostBtn(){
+    public void clickOnCreatePostBtn(){
         wait.until(ExpectedConditions.visibilityOf(formBtn)).click();
     }
-
 }
