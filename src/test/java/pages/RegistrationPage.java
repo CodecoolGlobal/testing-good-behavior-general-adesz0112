@@ -1,14 +1,9 @@
 package pages;
-import io.cucumber.java.After;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.openqa.selenium.Dimension;
+
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import static org.junit.jupiter.api.Assertions.*;
-
 
 public class RegistrationPage extends BasePage {
 
@@ -29,68 +24,42 @@ public class RegistrationPage extends BasePage {
     @FindBy(className = "signUpForm")
     private WebElement signUpForm;
 
-    @After
-   public void teardown() {
-        driver.quit();
+    public RegistrationPage(WebDriver driver) {
+        super(driver);
     }
 
-    @Given("user is on the {string} page")
-    public void userIsOnTheRegistrationPage(String regPageUrl) {
-        driver.get(regPageUrl);
-        driver.manage().window().maximize();
+    public void clickToSignUp() {
+        wait.until(ExpectedConditions.visibilityOf(signUpForm));
     }
 
-    @When("user enters {string}, {string} and valid {string}, {string} and {string} credentials")
-    public void userEntersValidCredentials(String firstName, String lastName, String userName, String email, String password) {
-        wait.until(ExpectedConditions.visibilityOf(firstNameInput)).sendKeys(firstName);
-        wait.until(ExpectedConditions.visibilityOf(lastNameInput)).sendKeys(lastName);
-        wait.until(ExpectedConditions.visibilityOf(usernameInput)).sendKeys(userName);
-        wait.until(ExpectedConditions.visibilityOf(emailInput)).sendKeys(email);
-        wait.until(ExpectedConditions.visibilityOf(passwordInput)).sendKeys(password);
+    public void clickRegisterBtn() {
+        wait.until(ExpectedConditions.elementToBeClickable(registerBtn));
     }
 
-    @When("user clicks on the Create an account button")
-    public void userClicksOnTheRegisterBtn() {
-        wait.until(ExpectedConditions.visibilityOf(registerBtn)).click();
-        sleep(SECONDS_OF_SLEEP);
+    public void enterFirstName(String firstName) {
+        firstNameInput.sendKeys(firstName);
     }
 
-    @When("user resizes the window to {string}")
-    public void resizeWindow(String dimension) {
-        String[] dimensions = dimension.split("x");
-        int width = Integer.parseInt(dimensions[0]);
-        int height = Integer.parseInt(dimensions[1]);
-        driver.manage().window().setSize(new Dimension(width, height));
+    public void enterLastName(String lastName) {
+        lastNameInput.sendKeys(lastName);
     }
 
-    @Then("user should be on the {string} page")
-    public void userShouldBeOnTheLoginPage(String loginPageUrl) {
-        String actualPageUrl = driver.getCurrentUrl();
-        assertEquals(loginPageUrl, actualPageUrl);
+    public void enterUsername(String username) {
+        usernameInput.sendKeys(username);
     }
 
-    @Then("user should not be be on the {string} page")
-    public void userShouldNotBeOnTheLoginPage(String loginPageUrl) {
-        String actualPageUrl = driver.getCurrentUrl();
-        assertNotEquals(loginPageUrl, actualPageUrl);
+    public void enterEmail(String email) {
+        emailInput.sendKeys(email);
     }
 
-    @Then("The registration should fail or show an error message")
-    public void verifySQLInjection() {
-        String pageSource = driver.getPageSource();
-        System.out.println(pageSource);
-        assertTrue(pageSource.contains("error") || pageSource.contains("Registration failed"));
+    public void enterPassword(String password) {
+        passwordInput.sendKeys(password);
     }
 
-    @Then("an error message should indicate the password is too short")
-    public void verifyPasswordTooShort() {
-        String pageSource = driver.getPageSource();
-        assertTrue(pageSource.contains("Password is too short"));
+    public boolean signUpFormIsDisplayed() {
+        return signUpForm.isDisplayed();
     }
 
-    @Then("layout should adjust correctly")
-    public void verifyResizesUIRegistrationPage(){
-        assertTrue(signUpForm.isDisplayed());
-    }
 }
+
 
