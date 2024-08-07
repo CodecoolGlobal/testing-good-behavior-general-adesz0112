@@ -1,58 +1,51 @@
-package pages;
+package StepDefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import pages.HomePage;
+import pages.RegistrationPage;
+import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+public class RegistrationSteps {
 
-public class RegistrationPage extends BasePage {
-
-    private final int SECONDS_OF_SLEEP = 3000;
-
-    @FindBy(id = "firstName")
-    private WebElement firstNameInput;
-    @FindBy(id = "lastName")
-    private WebElement lastNameInput;
-    @FindBy(id = "username")
-    private WebElement usernameInput;
-    @FindBy(id = "email")
-    private WebElement emailInput;
-    @FindBy(id = "password")
-    private WebElement passwordInput;
-    @FindBy(className = "formBtn")
-    private WebElement registerBtn;
-    @FindBy(className = "signUpForm")
-    private WebElement signUpForm;
+    private HomePage homePage;
+    private RegistrationPage registrationPage;
+    private WebDriver driver;
 
     @After
-   public void teardown() {
+    public void teardown() {
         driver.quit();
     }
 
     @Given("user is on the {string} page")
     public void userIsOnTheRegistrationPage(String regPageUrl) {
-        driver.get(regPageUrl);
+        driver = new EdgeDriver();
+        homePage = new HomePage(driver);
+        registrationPage = new RegistrationPage(driver);
+        homePage.navigateToHomePage(regPageUrl);
         driver.manage().window().maximize();
     }
 
     @When("user enters {string}, {string} and valid {string}, {string} and {string} credentials")
     public void userEntersValidCredentials(String firstName, String lastName, String userName, String email, String password) {
-        wait.until(ExpectedConditions.visibilityOf(firstNameInput)).sendKeys(firstName);
-        wait.until(ExpectedConditions.visibilityOf(lastNameInput)).sendKeys(lastName);
-        wait.until(ExpectedConditions.visibilityOf(usernameInput)).sendKeys(userName);
-        wait.until(ExpectedConditions.visibilityOf(emailInput)).sendKeys(email);
-        wait.until(ExpectedConditions.visibilityOf(passwordInput)).sendKeys(password);
+        registrationPage.clickToSignUp();
+        registrationPage.enterFirstName(firstName);
+        registrationPage.enterLastName(lastName);
+        registrationPage.enterUsername(userName);
+        registrationPage.enterEmail(email);
+        registrationPage.enterPassword(password);
     }
 
     @When("user clicks on the Create an account button")
-    public void userClicksOnTheRegisterBtn() {
-        wait.until(ExpectedConditions.visibilityOf(registerBtn)).click();
-        sleep(SECONDS_OF_SLEEP);
+    public void userClicksOnTheRegisterBtn() throws InterruptedException {
+        registrationPage.clickRegisterBtn();
+        sleep(5000);
     }
 
     @When("user resizes the window to {string}")
@@ -90,7 +83,6 @@ public class RegistrationPage extends BasePage {
 
     @Then("layout should adjust correctly")
     public void verifyResizesUIRegistrationPage(){
-        assertTrue(signUpForm.isDisplayed());
+        assertTrue(registrationPage.signUpFormIsDisplayed());
     }
 }
-

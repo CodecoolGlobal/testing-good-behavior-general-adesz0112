@@ -1,5 +1,6 @@
 package pages;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +18,10 @@ public class CreatePostPage extends BasePage{
     private WebElement formBtn;
     @FindBy(id = "newPost")
     private WebElement newPostBtn;
+
+    public CreatePostPage(WebDriver driver) {
+        super(driver);
+    }
 
     @When("user clicks on the Create Post button on the home page")
     public void userClicksOnCreateNewPostBtnOnHomePage(){
