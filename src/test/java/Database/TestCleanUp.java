@@ -5,17 +5,11 @@ import java.sql.SQLException;
 public class TestCleanUp {
 
     private DatabaseHelper dbHelper;
-    private String jwtSecretKey;
 
     public TestCleanUp() {
         String dbUrl = System.getenv("DATABASE_URL");
         String dbUser = System.getenv("DATABASE_USERNAME");
         String dbPassword = System.getenv("DATABASE_PASSWORD");
-        this.jwtSecretKey = System.getenv("JWTSECRETKEY");
-
-        if (this.jwtSecretKey == null || this.jwtSecretKey.isEmpty()) {
-            throw new IllegalArgumentException("JWT Secret Key must be provided as environment variable");
-        }
 
         try {
             dbHelper = new DatabaseHelper(dbUrl, dbUser, dbPassword);
