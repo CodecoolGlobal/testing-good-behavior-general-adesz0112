@@ -13,8 +13,8 @@ public abstract class BasePage {
     protected WebDriverWait wait;
     private final int WAIT_SECOND = 10;
 
-    public BasePage() {
-        this.driver = new EdgeDriver();
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(WAIT_SECOND));
         PageFactory.initElements(driver, this);
     }
