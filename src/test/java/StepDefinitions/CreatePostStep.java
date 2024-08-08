@@ -2,6 +2,7 @@ package StepDefinitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -65,7 +66,7 @@ public class CreatePostStep {
         createPostPage.clickOnCreatePostBtn();
     }
 
-    @Given("user sees the uploaded image")
+    @Then("user sees the uploaded image")
     public void userSeesUploadedImage(){
         assertTrue(createPostPage.getUploadedImage().isDisplayed());
     }
