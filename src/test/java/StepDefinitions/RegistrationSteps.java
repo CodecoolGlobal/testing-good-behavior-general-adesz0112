@@ -18,10 +18,10 @@ public class RegistrationSteps {
     private RegistrationPage registrationPage;
     private WebDriver driver;
 
-    @After
-    public void teardown() {
-        driver.quit();
-    }
+//    @After
+//    public void teardown() {
+//        driver.quit();
+//    }
 
     @Given("user is on the {string} page")
     public void userIsOnTheRegistrationPage(String regPageUrl) {
