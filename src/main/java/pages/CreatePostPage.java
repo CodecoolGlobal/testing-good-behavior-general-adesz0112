@@ -21,13 +21,14 @@ public class CreatePostPage extends BasePage {
     private WebElement formBtn;
     @FindBy(id = "newPost")
     private WebElement newPostBtn;
+    @FindBy(className = "images")
+    private WebElement uploadedImage;
 
     public CreatePostPage(WebDriver driver) {
         super(driver);
     }
 
     public void clicksOnCreateNewPostBtn() {
-        sleep(SECONDS_OF_SLEEP);
         wait.until(ExpectedConditions.visibilityOf(newPostBtn));
         wait.until(ExpectedConditions.elementToBeClickable(newPostBtn));
         newPostBtn.click();
@@ -40,12 +41,15 @@ public class CreatePostPage extends BasePage {
     }
 
     public void writeDescription() {
-        sleep(SECONDS_OF_SLEEP);
         String testDescription = "Test";
         wait.until(ExpectedConditions.elementToBeClickable(textAreaInput)).sendKeys(testDescription);
     }
 
     public void clickOnCreatePostBtn() {
         wait.until(ExpectedConditions.visibilityOf(formBtn)).click();
+    }
+
+    public WebElement getUploadedImage() {
+        return uploadedImage;
     }
 }

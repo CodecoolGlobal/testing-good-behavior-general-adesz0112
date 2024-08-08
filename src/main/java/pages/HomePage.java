@@ -24,6 +24,7 @@ public class HomePage extends BasePage {
 
     public void navigateToHomePage(String url) {
         driver.get(url);
+        sleep(4000);
     }
 
     public void logout() {

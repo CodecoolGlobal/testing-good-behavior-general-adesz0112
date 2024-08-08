@@ -1,7 +1,6 @@
 package StepDefinitions;
 
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
@@ -9,29 +8,31 @@ import org.openqa.selenium.edge.EdgeDriver;
 import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CreatePostStep extends DriverManager {
+public class CreatePostStep {
 
+    private WebDriver driver;
     private CreatePostPage createPostPage;
     private HomePage homePage;
     private LoginPage loginPage;
 
-    @Before
-    public void setup() {
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        createPostPage = new CreatePostPage(driver);
-    }
 
     @After
-    public void terminateDriver(){
-        teardown();
+    public void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
     @Given("user is on the {string} login page to login before")
-    public void userLogsIn(String loginPageUrl) throws InterruptedException {
+    public void userLogsIn(String loginPageUrl) {
+        driver = new EdgeDriver();
+        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
+        createPostPage = new CreatePostPage(driver);
+        driver.manage().window().maximize();
         homePage.navigateToHomePage(loginPageUrl);
-        Thread.sleep(5000);
     }
 
     @When("user enters {string} and {string} credentials")
@@ -62,5 +63,10 @@ public class CreatePostStep extends DriverManager {
     @When("user clicks on the Create Post button")
     public void userClicksOnCreatePostBtn() {
         createPostPage.clickOnCreatePostBtn();
+    }
+
+    @Given("user sees the uploaded image")
+    public void userSeesUploadedImage(){
+        assertTrue(createPostPage.getUploadedImage().isDisplayed());
     }
 }

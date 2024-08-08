@@ -8,3 +8,4 @@ Feature: User posts an image with description
     And user writes description
     And user uploads an image file
     And user clicks on the Create Post button
+    Then user sees the uploaded image
