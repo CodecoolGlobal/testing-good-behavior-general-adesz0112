@@ -26,6 +26,7 @@ public class LoginPage extends BasePage{
 
     public void login(){
         loginButton.click();
+        sleep(5000);
     }
 
 }

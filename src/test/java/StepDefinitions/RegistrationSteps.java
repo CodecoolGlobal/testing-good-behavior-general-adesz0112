@@ -1,5 +1,6 @@
 package StepDefinitions;
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,24 +13,26 @@ import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class RegistrationSteps {
+public class RegistrationSteps extends DriverManager{
 
     private HomePage homePage;
     private RegistrationPage registrationPage;
-    private WebDriver driver;
+
+    @Before
+    public void setUp(){
+        initialize();
+        homePage = new HomePage(driver);
+        registrationPage = new RegistrationPage(driver);
+    }
 
     @After
-    public void teardown() {
-        driver.quit();
+    public void terminateDriver(){
+        teardown();
     }
 
     @Given("user is on the {string} page")
     public void userIsOnTheRegistrationPage(String regPageUrl) {
-        driver = new EdgeDriver();
-        homePage = new HomePage(driver);
-        registrationPage = new RegistrationPage(driver);
         homePage.navigateToHomePage(regPageUrl);
-        driver.manage().window().maximize();
     }
 
     @When("user enters {string}, {string} and valid {string}, {string} and {string} credentials")
