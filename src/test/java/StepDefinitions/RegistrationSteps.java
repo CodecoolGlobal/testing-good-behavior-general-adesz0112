@@ -1,4 +1,5 @@
 package StepDefinitions;
+
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import pages.HomePage;
 import pages.RegistrationPage;
+
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,10 +20,11 @@ public class RegistrationSteps {
     private RegistrationPage registrationPage;
     private WebDriver driver;
 
-//    @After
-//    public void teardown() {
-//        driver.quit();
-//    }
+    @After
+    public void teardown() {
+        driver.quit();
+    }
+
 
     @Given("user is on the {string} page")
     public void userIsOnTheRegistrationPage(String regPageUrl) {
@@ -33,7 +36,8 @@ public class RegistrationSteps {
     }
 
     @When("user enters {string}, {string} and valid {string}, {string} and {string} credentials")
-    public void userEntersValidCredentials(String firstName, String lastName, String userName, String email, String password) {
+    public void userEntersValidCredentials(String firstName, String lastName, String userName, String email, String
+            password) {
         registrationPage.clickToSignUp();
         registrationPage.enterFirstName(firstName);
         registrationPage.enterLastName(lastName);
@@ -82,7 +86,7 @@ public class RegistrationSteps {
     }
 
     @Then("layout should adjust correctly")
-    public void verifyResizesUIRegistrationPage(){
+    public void verifyResizesUIRegistrationPage() {
         assertTrue(registrationPage.signUpFormIsDisplayed());
     }
 }
