@@ -24,14 +24,17 @@ public class LoginSteps {
         homePage.navigateToHomePage(regPageUrl);
         driver.manage().window().maximize();
     }
+
     @When("user enters {string} and {string}")
     public void user_enters_username_and_password(String userName, String password) {
-       loginPage.enterUserNameAndPassword(userName, password);
+        loginPage.enterUserNameAndPassword(userName, password);
     }
+
     @When("user clicks on the login button")
     public void user_clicks_on_the_login_button() {
         loginPage.login();
     }
+
     @Then("user is on the home page")
     public void user_is_on_the_home_page() {
         String actual = driver.getCurrentUrl();

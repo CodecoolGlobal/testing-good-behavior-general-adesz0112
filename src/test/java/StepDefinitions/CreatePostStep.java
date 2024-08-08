@@ -9,6 +9,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CreatePostStep {
@@ -17,7 +18,6 @@ public class CreatePostStep {
     private CreatePostPage createPostPage;
     private HomePage homePage;
     private LoginPage loginPage;
-
 
     @After
     public void teardown() {
@@ -67,7 +67,7 @@ public class CreatePostStep {
     }
 
     @Then("user sees the uploaded image")
-    public void userSeesUploadedImage(){
+    public void userSeesUploadedImage() {
         assertTrue(createPostPage.getUploadedImage().isDisplayed());
     }
 }

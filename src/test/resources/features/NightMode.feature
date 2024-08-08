@@ -8,8 +8,7 @@ Feature: User can use night mode
     When user clicks on the night mode button
     Then the background color of the page is changed
 
-
-    Scenario:
-      And the page is in night mode
-      When user clicks on the day mode button
-      Then the background color of the page is changed to light mode
+  Scenario:
+    And the page is in night mode
+    When user clicks on the day mode button
+    Then the background color of the page is changed to light mode

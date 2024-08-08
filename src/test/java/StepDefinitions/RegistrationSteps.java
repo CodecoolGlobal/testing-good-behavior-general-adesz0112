@@ -1,5 +1,5 @@
 package StepDefinitions;
-import io.cucumber.java.After;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import pages.HomePage;
 import pages.RegistrationPage;
+
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,11 +18,6 @@ public class RegistrationSteps {
     private HomePage homePage;
     private RegistrationPage registrationPage;
     private WebDriver driver;
-
-//    @After
-//    public void teardown() {
-//        driver.quit();
-//    }
 
     @Given("user is on the {string} page")
     public void userIsOnTheRegistrationPage(String regPageUrl) {
@@ -82,7 +78,7 @@ public class RegistrationSteps {
     }
 
     @Then("layout should adjust correctly")
-    public void verifyResizesUIRegistrationPage(){
+    public void verifyResizesUIRegistrationPage() {
         assertTrue(registrationPage.signUpFormIsDisplayed());
     }
 }

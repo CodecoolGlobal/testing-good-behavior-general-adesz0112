@@ -6,24 +6,20 @@ Feature: User registers
   Background:
     Given user is on the "http://localhost:5173/signup" page
 
-
   Scenario: Successful register with valid credentials
     When user enters "Johnn", "Dooe" and valid "johndooe", "johnndoe@gmail.com" and "password" credentials
     And user clicks on the Create an account button
     Then user should be on the "http://localhost:5173/login" page
-
 
   Scenario: Unsuccessful register with invalid email
     When user enters "John", "Doe" and valid "johndoe", "johnDoe" and "password" credentials
     And user clicks on the Create an account button
     Then user should not be be on the "http://localhost:5173/login" page
 
-
   Scenario: Password too short
     When user enters "John", "Doe" and valid "johndoe", "john@example.com" and "p" credentials
     And user clicks on the Create an account button
     Then an error message should indicate the password is too short
-
 
   Scenario Outline: Successful register with special characters
     When user enters "<FirstName>", "<LastName>" and valid "<UserName>", "<Email>" and "<Password>" credentials
@@ -37,12 +33,10 @@ Feature: User registers
       | ' '        | ' '       | ' '                  | test@gmail.com           | ' '        |
       | user@name  | .com*     | qwerty1234           | user@name.com            | qwerty1234 |
 
-
   Scenario: Attempting SQL Injection Attack on the Registration Form
     When user enters "John", "Doe" and valid "johndoe", "fakeemail' OR '1'='1" and "password" credentials
     And user clicks on the Create an account button
     Then The registration should fail or show an error message
-
 
   Scenario: Responsive UI Test for Registration Page
     When user resizes the window to "1920x1080"

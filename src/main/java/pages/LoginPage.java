@@ -3,14 +3,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-
 public class LoginPage extends BasePage{
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-
+    private final int SECONDS_OF_SLEEP = 3000;
     @FindBy( id="username")
     private WebElement usernameField;
     @FindBy( id = "password")
@@ -26,7 +25,7 @@ public class LoginPage extends BasePage{
 
     public void login(){
         loginButton.click();
-        sleep(5000);
+        sleep(SECONDS_OF_SLEEP);
     }
 
 }

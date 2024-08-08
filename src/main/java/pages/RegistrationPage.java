@@ -7,8 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class RegistrationPage extends BasePage {
 
-    private final int SECONDS_OF_SLEEP = 3000;
-
     @FindBy(id = "firstName")
     private WebElement firstNameInput;
     @FindBy(id = "lastName")

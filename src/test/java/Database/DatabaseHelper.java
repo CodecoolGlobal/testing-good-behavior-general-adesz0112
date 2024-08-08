@@ -1,4 +1,5 @@
 package Database;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,7 +19,6 @@ public class DatabaseHelper {
             stmt.executeUpdate(sql);
         }
     }
-
 
     public void closeConnection() throws SQLException {
         if (connection != null && !connection.isClosed()) {

@@ -8,17 +8,13 @@ import org.openqa.selenium.edge.EdgeDriver;
 import pages.HomePage;
 import pages.LoginPage;
 
-import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LogoutSteps {
 
     private HomePage homePage;
     private LoginPage loginPage;
-
     private WebDriver driver;
-
-
 
     @Given("user is already logged in {string} with valid {string} and {string} credentials")
     public void user_is_already_logged_in_with_valid_and_credentials(String url, String userName, String password) throws InterruptedException {
@@ -42,6 +38,5 @@ public class LogoutSteps {
         String expected = "http://localhost:5173/login";
         assertEquals(expected, actual);
     }
-
 
 }
