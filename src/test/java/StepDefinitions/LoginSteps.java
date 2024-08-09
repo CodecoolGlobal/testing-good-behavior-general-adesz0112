@@ -1,10 +1,8 @@
 package StepDefinitions;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -18,11 +16,10 @@ public class LoginSteps {
 
     @Given("user is on the {string} login page")
     public void user_is_on_the_login_page(String regPageUrl) {
-        driver = new EdgeDriver();
+        this.driver = Hook.getDriver();
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
         homePage.navigateToHomePage(regPageUrl);
-        driver.manage().window().maximize();
     }
 
     @When("user enters {string} and {string}")

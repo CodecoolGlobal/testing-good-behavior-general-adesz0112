@@ -1,14 +1,12 @@
 package StepDefinitions;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import pages.HomePage;
 import pages.LoginPage;
-
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 
 public class NightModeSteps {
 
@@ -19,13 +17,11 @@ public class NightModeSteps {
 
     @Given("user is on the {string} page with valid {string} and {string} credentials")
     public void user_is_on_the_page_with_valid_and_credentials(String url, String userName, String password) {
-        driver = new EdgeDriver();
+        this.driver = Hook.getDriver();
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
         homePage.navigateToHomePage(url);
-        driver.manage().window().maximize();
-        loginPage.enterUserNameAndPassword(userName, password);
-        loginPage.login();
+        loginPage.loginProcess(userName, password);
     }
 
     @Given("the page is in night mode")

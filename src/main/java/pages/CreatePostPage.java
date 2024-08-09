@@ -26,20 +26,19 @@ public class CreatePostPage extends BasePage {
     }
 
     public void clicksOnCreateNewPostBtn() {
-        wait.until(ExpectedConditions.visibilityOf(newPostBtn));
-        wait.until(ExpectedConditions.elementToBeClickable(newPostBtn));
+        wait(newPostBtn);
         newPostBtn.click();
     }
 
     public void uploadImageFile() {
         sleep(SECONDS_OF_SLEEP);
-        wait.until(ExpectedConditions.elementToBeClickable(uploadBtn)).click();
+        wait(uploadBtn).click();
         uploadBtn.sendKeys(filePath);
     }
 
     public void writeDescription() {
         String testDescription = "Test";
-        wait.until(ExpectedConditions.elementToBeClickable(textAreaInput)).sendKeys(testDescription);
+        wait(textAreaInput).sendKeys(testDescription);
     }
 
     public void clickOnCreatePostBtn() {

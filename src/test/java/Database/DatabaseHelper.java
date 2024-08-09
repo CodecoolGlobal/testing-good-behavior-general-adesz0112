@@ -1,9 +1,8 @@
 package Database;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DatabaseHelper {
 
@@ -15,8 +14,8 @@ public class DatabaseHelper {
 
     public void clearTable(String tableName) throws SQLException {
         String sql = "TRUNCATE TABLE " + tableName + " CASCADE";
-        try (Statement stmt = connection.createStatement()) {
-            stmt.executeUpdate(sql);
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.executeUpdate();
         }
     }
 

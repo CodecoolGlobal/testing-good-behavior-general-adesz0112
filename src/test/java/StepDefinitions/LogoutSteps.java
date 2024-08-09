@@ -1,10 +1,8 @@
 package StepDefinitions;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -16,15 +14,14 @@ public class LogoutSteps {
     private LoginPage loginPage;
     private WebDriver driver;
 
+
     @Given("user is already logged in {string} with valid {string} and {string} credentials")
     public void user_is_already_logged_in_with_valid_and_credentials(String url, String userName, String password) throws InterruptedException {
-        driver = new EdgeDriver();
+        this.driver = Hook.getDriver();
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
         homePage.navigateToHomePage(url);
-        driver.manage().window().maximize();
-        loginPage.enterUserNameAndPassword(userName, password);
-        loginPage.login();
+        loginPage.loginProcess(userName, password);
     }
 
     @When("user clicks on the logout button")

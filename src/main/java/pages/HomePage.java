@@ -13,7 +13,7 @@ public class HomePage extends BasePage {
     private WebElement darkButton;
     @FindBy(xpath = "//img[@alt='sun']")
     private WebElement dayButton;
-    @FindBy(id = "logoutbtn")
+    @FindBy(id = "logoutBtn")
     private WebElement logoutButton;
     @FindBy(id = "light")
     private WebElement lightElement;

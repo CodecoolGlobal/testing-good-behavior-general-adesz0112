@@ -1,9 +1,9 @@
 package pages;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class RegistrationPage extends BasePage {
 
@@ -27,11 +27,11 @@ public class RegistrationPage extends BasePage {
     }
 
     public void clickToSignUp() {
-        wait.until(ExpectedConditions.visibilityOf(signUpForm));
+        wait(signUpForm);
     }
 
     public void clickRegisterBtn() {
-        wait.until(ExpectedConditions.elementToBeClickable(registerBtn)).click();
+        wait(registerBtn).click();
     }
 
     public void enterFirstName(String firstName) {
@@ -54,10 +54,29 @@ public class RegistrationPage extends BasePage {
         passwordInput.sendKeys(password);
     }
 
+    public void registerProcess(String firstName, String lastName, String userName, String email, String password){
+        clickToSignUp();
+        enterFirstName(firstName);
+        enterLastName(lastName);
+        enterUsername(userName);
+        enterEmail(email);
+        enterPassword(password);
+    }
+
     public boolean signUpFormIsDisplayed() {
         return signUpForm.isDisplayed();
     }
 
+    public void resizeWindow(int width, int height){
+        driver.manage().window().setSize(new Dimension(width, height));
+    }
+    public String getCurrUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    public String getPageSource(){
+       return driver.getPageSource();
+    }
 }
 
 

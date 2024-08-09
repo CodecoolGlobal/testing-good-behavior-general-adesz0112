@@ -28,4 +28,9 @@ public class LoginPage extends BasePage{
         sleep(SECONDS_OF_SLEEP);
     }
 
+    public void loginProcess(String username, String password){
+        enterUserNameAndPassword(username, password);
+        login();
+    }
+
 }

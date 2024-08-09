@@ -5,7 +5,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -19,29 +18,22 @@ public class CreatePostStep {
     private HomePage homePage;
     private LoginPage loginPage;
 
-    @After
-    public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
 
     @Given("user is on the {string} login page to login before")
     public void userLogsIn(String loginPageUrl) {
-        driver = new EdgeDriver();
+        this.driver = Hook.getDriver();
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
         createPostPage = new CreatePostPage(driver);
-        driver.manage().window().maximize();
         homePage.navigateToHomePage(loginPageUrl);
     }
 
-    @When("user enters {string} and {string} credentials")
+    @Given("user enters {string} and {string} credentials")
     public void userEntersCredentials(String username, String password) {
         loginPage.enterUserNameAndPassword(username, password);
     }
 
-    @When("user clicks on the login button to login")
+    @Given("user clicks on the login button to login")
     public void userClickOnLoginBtn() {
         loginPage.login();
     }
