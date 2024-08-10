@@ -1,4 +1,5 @@
 package StepDefinitions;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,24 +13,28 @@ public class LoginSteps {
     private LoginPage loginPage;
     private HomePage homePage;
     private WebDriver driver;
+    private BaseStep baseStep;
 
-
-    @Given("user is on the {string} login page")
-    public void user_is_on_the_login_page(String regPageUrl) {
+    public LoginSteps() {
         this.driver = Hook.getDriver();
-        homePage = new HomePage(driver);
-        loginPage = new LoginPage(driver);
-        homePage.navigateToHomePage(regPageUrl);
+        this.baseStep = new BaseStep(driver);
+        this.homePage = new HomePage(driver);
+        this.loginPage = new LoginPage(driver);
+    }
+
+    @Given("user is on the {string} page")
+    public void user_is_on_the_login_page(String regPageUrl) {
+        baseStep.userIsOnThePage(regPageUrl);
     }
 
     @When("user enters {string} and {string}")
     public void user_enters_username_and_password(String userName, String password) {
-        loginPage.enterUserNameAndPassword(userName, password);
+        baseStep.userEntersUsernameAndPassword(userName, password);
     }
 
     @When("user clicks on the login button")
     public void user_clicks_on_the_login_button() {
-        loginPage.login();
+        baseStep.clickOnLoginBtn();
     }
 
     @Then("user is on the home page")

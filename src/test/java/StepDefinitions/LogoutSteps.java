@@ -5,6 +5,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.RegistrationPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,14 +15,10 @@ public class LogoutSteps {
     private LoginPage loginPage;
     private WebDriver driver;
 
-
-    @Given("user is already logged in {string} with valid {string} and {string} credentials")
-    public void user_is_already_logged_in_with_valid_and_credentials(String url, String userName, String password) throws InterruptedException {
+    public LogoutSteps() {
         this.driver = Hook.getDriver();
-        homePage = new HomePage(driver);
-        loginPage = new LoginPage(driver);
-        homePage.navigateToHomePage(url);
-        loginPage.loginProcess(userName, password);
+        this.homePage = new HomePage(driver);
+        this.loginPage = new LoginPage(driver);
     }
 
     @When("user clicks on the logout button")

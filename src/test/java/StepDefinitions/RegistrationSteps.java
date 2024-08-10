@@ -1,11 +1,9 @@
 package StepDefinitions;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.RegistrationPage;
-import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -22,12 +20,6 @@ public class RegistrationSteps {
         this.registrationPage = new RegistrationPage(driver);
     }
 
-
-    @Given("user is on the {string} page")
-    public void userIsOnTheRegistrationPage(String regPageUrl) {
-        homePage.navigateToHomePage(regPageUrl);
-    }
-
     @When("user enters {string}, {string} and valid {string}, {string} and {string} credentials")
     public void userEntersValidCredentials(String firstName, String lastName, String userName, String email, String password) {
         registrationPage.registerProcess(firstName,lastName,userName,email,password);
@@ -36,7 +28,6 @@ public class RegistrationSteps {
     @When("user clicks on the Create an account button")
     public void userClicksOnTheRegisterBtn() throws InterruptedException {
         registrationPage.clickRegisterBtn();
-        sleep(5000);
     }
 
     @When("user resizes the window to {string}")

@@ -19,15 +19,9 @@ public abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    protected void sleep(int secondsOfSleep) {
-        try {
-            Thread.sleep(secondsOfSleep);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException("Thread was interrupted", e);
-        }
-    }
     protected WebElement wait(WebElement webElement){
-        return wait.until(ExpectedConditions.elementToBeClickable(webElement));
+         wait.until(ExpectedConditions.elementToBeClickable(webElement));
+         wait.until(ExpectedConditions.visibilityOf(webElement));
+         return webElement;
     }
 }

@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class CreatePostPage extends BasePage {
 
     String filePath = System.getenv("IMAGE_LOCAL_PATH");
-    private final int SECONDS_OF_SLEEP = 3000;
 
     @FindBy(className = "select-from-computer-button")
     private WebElement uploadBtn;
@@ -31,7 +30,6 @@ public class CreatePostPage extends BasePage {
     }
 
     public void uploadImageFile() {
-        sleep(SECONDS_OF_SLEEP);
         wait(uploadBtn).click();
         uploadBtn.sendKeys(filePath);
     }
@@ -42,7 +40,7 @@ public class CreatePostPage extends BasePage {
     }
 
     public void clickOnCreatePostBtn() {
-        wait.until(ExpectedConditions.visibilityOf(formBtn)).click();
+        wait(formBtn).click();
     }
 
     public WebElement getUploadedImage() {

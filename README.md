@@ -40,7 +40,7 @@ The test cases cover various scenarios of the el-proyecte-grande 1.4 application
 
 ## Known Issues
 The project currently has the following known issues:
-![alt text](image-2.png)  ![alt text](image-1.png)
+![alt text](image-2.png)  
 These issues are listed in the project's task board in the "TO DO" column and are awaiting resolution.
 
 ## Test Details

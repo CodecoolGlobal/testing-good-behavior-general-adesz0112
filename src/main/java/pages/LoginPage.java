@@ -23,14 +23,13 @@ public class LoginPage extends BasePage{
         passwordField.sendKeys(password);
     }
 
-    public void login(){
+    public void clickToLogin(){
         loginButton.click();
-        sleep(SECONDS_OF_SLEEP);
     }
 
     public void loginProcess(String username, String password){
         enterUserNameAndPassword(username, password);
-        login();
+        clickToLogin();
     }
 
 }

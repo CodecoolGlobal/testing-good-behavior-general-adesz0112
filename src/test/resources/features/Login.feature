@@ -2,7 +2,7 @@ Feature: Login
   As a user i want to login, with my username and password
 
   Background:
-    Given  user is on the "http://localhost:5173/login" login page
+    Given  user is on the "http://localhost:5173/login" page
 
   Scenario: Successful login with valid credentials
 

@@ -3,6 +3,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import pages.CreatePostPage;
 import pages.HomePage;
 import pages.LoginPage;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -15,14 +16,13 @@ public class NightModeSteps {
     private WebDriver driver;
     private String backgroundColor;
 
-    @Given("user is on the {string} page with valid {string} and {string} credentials")
-    public void user_is_on_the_page_with_valid_and_credentials(String url, String userName, String password) {
+    public NightModeSteps() {
         this.driver = Hook.getDriver();
-        homePage = new HomePage(driver);
-        loginPage = new LoginPage(driver);
-        homePage.navigateToHomePage(url);
-        loginPage.loginProcess(userName, password);
+        this.homePage = new HomePage(driver);
+        this.loginPage = new LoginPage(driver);
     }
+
+
 
     @Given("the page is in night mode")
     public void the_page_is_in_night_mode() {

@@ -1,6 +1,5 @@
 package StepDefinitions;
 
-import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,25 +17,13 @@ public class CreatePostStep {
     private HomePage homePage;
     private LoginPage loginPage;
 
-
-    @Given("user is on the {string} login page to login before")
-    public void userLogsIn(String loginPageUrl) {
+    public CreatePostStep() {
         this.driver = Hook.getDriver();
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        createPostPage = new CreatePostPage(driver);
-        homePage.navigateToHomePage(loginPageUrl);
+        this.createPostPage = new CreatePostPage(driver);
+        this.homePage = new HomePage(driver);
+        this.loginPage = new LoginPage(driver);
     }
 
-    @Given("user enters {string} and {string} credentials")
-    public void userEntersCredentials(String username, String password) {
-        loginPage.enterUserNameAndPassword(username, password);
-    }
-
-    @Given("user clicks on the login button to login")
-    public void userClickOnLoginBtn() {
-        loginPage.login();
-    }
 
     @When("user clicks on the Create Post button on the home page")
     public void userClicksOnCreateNewPostBtnOnHomePage() {
